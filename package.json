@@ -1,5 +1,5 @@
 {
-  "name": "customized-mimic",
+  "name": "ad-creator-engine",
   "version": "1.0.0",
   "description": "Tools for ad creation",
   "main": "index.js",
@@ -9,13 +9,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/xJkit/customized-mimic.git"
+    "url": "git+ssh://git@github.com/xJkit/ad-creator-engine.git"
   },
   "author": "xJkit",
   "bugs": {
-    "url": "https://github.com/xJkit/customized-mimic/issues"
+    "url": "https://github.com/xJkit/ad-creator-engine/issues"
   },
-  "homepage": "https://github.com/xJkit/customized-mimic#readme",
+  "homepage": "https://github.com/xJkit/ad-creator-engine#readme",
   "dependencies": {
     "css-loader": "^6.6.0",
     "html-webpack-plugin": "^5.5.0",
