@@ -1,3 +1,9 @@
+# npm modules
 node_modules
+
+# useless log files
 npm-debug.log
+yarn-error.log
+
+# production builds
 dist
