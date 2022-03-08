@@ -1,14 +1,18 @@
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+// template entries
+const templateEntry = require('./src/templates/templateEntry');
 const isDevMode = process.env.NODE_ENV !== 'production';
 
 // webpack.config.js
 module.exports = {
-  entry: ['./src/index.js', './src/index.css'],
+  entry: templateEntry,
   output: {
-    path: __dirname,
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    filename: 'bundle.js',
+    filename: '[name].[contenthash].bundle.js',
   },
   module: {
     rules: [
@@ -20,7 +24,7 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
+        test: /\.s?[ac]ss$/,
         use: [
           isDevMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           {
