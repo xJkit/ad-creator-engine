@@ -13,16 +13,13 @@ const TEMPLATE_FILENAME = 'template_a';
 
 // common plugins
 const commonConfigPlugIns = [
-  // new CopyPlugin({
-  //   patterns: [path.resolve(__dirname, './src/parent.js')],
-  // }),
-  // template html
   new HtmlWebpackPlugin({
     filename: `${TEMPLATE_FILENAME}.html`,
     template: path.resolve(
       __dirname,
       './src/templates/bottom-plus/template-a/index.template.html'
     ),
+    excludeAssets: [/parent.js/],
   }),
 ];
 // webpack.config.js
@@ -32,6 +29,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
     filename: '[name].bundle.js',
+    assetModuleFilename: 'assets/[name][ext]',
   },
   resolve: {
     alias: {
@@ -41,6 +39,10 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.(png|jpg|gif)$/i,
+        type: 'asset/resource',
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,

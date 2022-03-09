@@ -1,4 +1,5 @@
 import { actions } from 'src/constants';
+import animate from './animate';
 import './index.scss';
 
 /** global variables */
@@ -6,6 +7,17 @@ let documentScrollTop = 0;
 let documentScrollHeight = 0;
 let shouldPlayEntryAnimation = true; // optional
 /***** */
+
+window.addEventListener('load', () => {
+  // window.parent.postMessage({ action: 'AppierSlotHidden' }, '*');
+  const element = document.createElement('span');
+  element.classList.add('content');
+  element.innerHTML = `Appier Ads inside iframe:(scrollTop, scrollHeight) = (${documentScrollTop}, ${documentScrollHeight})`;
+  document.body.appendChild(element);
+
+  // start the animation
+  animate();
+});
 
 window.addEventListener('message', (event) => {
   if (event.data.action === actions.SCROLL) {
@@ -32,11 +44,3 @@ var start = function () {
     }
   }, 1000);
 };
-
-window.addEventListener('load', () => {
-  // window.parent.postMessage({ action: 'AppierSlotHidden' }, '*');
-  const element = document.createElement('span');
-  element.classList.add('content');
-  element.innerHTML = `Appier Ads inside iframe:(scrollTop, scrollHeight) = (${documentScrollTop}, ${documentScrollHeight})`;
-  document.body.appendChild(element);
-});
