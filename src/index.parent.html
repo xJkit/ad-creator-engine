@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Appier Ad</title>
+  <style>
+    html,
+    body {
+      height: 100%;
+      overflow: auto;
+    }
+
+    #parent-bg {
+      background-color: #ddd;
+      height: 500%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <ins class="adcads" data-adc-id="3QKCdAGvm4uu" data-unit="3QKCdAGvm4uu" data-clickable="yes" data-redir="yes"
+    data-click-tracker="${CLICK_THROUGH_URL}https%3A%2F%2Fwww.appier.com%2F" data-click-macro="${CLICK_THROUGH_URL}"
+    data-responsive="yes" data-width="320" data-height="160" data-3rd-tracker="${arm_beacon}ad-serving-impression"
+    data-onevent-ad-initiated="${arm_beacon}ad-initiated" data-onevent-ad-is-in-view="${arm_beacon}ad-is-in-view"
+    data-onevent-ad-is-out-of-view="${arm_beacon}ad-is-out-of-view" data-onevent-ad-loaded="${arm_beacon}ad-loaded"
+    data-onevent-click="${arm_beacon}click" data-onevent-engaged="${arm_beacon}engaged"
+    data-onevent-page-seen-1="${arm_beacon}page-seen-1" data-onevent-page-seen-2="${arm_beacon}page-seen-2"
+    data-onevent-page-seen-3="${arm_beacon}page-seen-3" data-onevent-page-seen-4="${arm_beacon}page-seen-4"
+    data-onevent-swipe="${arm_beacon}swipe" data-onevent-touch="${arm_beacon}touch"
+    data-onevent-unique-touch="${arm_beacon}unique-touch"
+    data-preview-url="<%= htmlWebpackPlugin.options.previewUrl %>">
+    <script src="./parent.js" type="text/javascript"></script>
+  </ins>
+  <div id="parent-bg"></div>
+</body>
+
+</html>
