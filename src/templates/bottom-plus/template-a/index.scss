@@ -1,10 +1,18 @@
+$jj-green: #aaa123;
 $deep-blue: #123aaa;
 $custom-font-weight: 900;
 $custom-font-size: 9;
 
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
 .content {
+  height: 100%;
   text-align: center;
   color: $deep-blue;
+  background-color: $jj-green;
   font-weight: $custom-font-weight;
   font-size: $custom-font-size;
 }
