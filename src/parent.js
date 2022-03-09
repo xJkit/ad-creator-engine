@@ -2,12 +2,14 @@ import { actions } from './constants';
 
 let iframe;
 let insDataSettings;
+let slotElement;
+let slotHeight;
 
 window.addEventListener('load', function () {
   console.log('parent loaded');
-  var insTag = document.getElementById('appier-ins-template-config');
-  var urlParams = new URLSearchParams(window.location.search);
-  var previewUrl =
+  const insTag = document.getElementById('appier-ins-template-config');
+  const urlParams = new URLSearchParams(window.location.search);
+  const previewUrl =
     urlParams.get('url') || insTag.getAttribute('data-preview-url');
   insDataSettings = Array.prototype.slice
     .call(insTag.attributes)
@@ -24,16 +26,16 @@ window.addEventListener('load', function () {
   iframe.src = previewUrl;
 
   // Ad content wrapper slot DOM: change dimensions by postMessage event below
-  var slot = document.createElement('div');
-  var height = parseInt(insTag.getAttribute('data-height'), 10) || 100;
-  slot.id = 'appier_preview_slot';
-  slot.style =
+  slotElement = document.createElement('div');
+  slotHeight = parseInt(insTag.getAttribute('data-height'), 10) || 100;
+  slotElement.id = 'appier_preview_slot';
+  slotElement.style =
     'z-index: 2147483647; bottom: 0; left: 0; position: fixed; width: 100%; height: ' +
-    height +
+    slotHeight +
     'px; display: block;';
-  slot.appendChild(iframe);
+  slotElement.appendChild(iframe);
 
-  insTag.parentNode.insertBefore(slot, insTag.nextSibling);
+  insTag.parentNode.insertBefore(slotElement, insTag.nextSibling);
 });
 
 window.addEventListener('scroll', function (event) {
@@ -50,16 +52,16 @@ window.addEventListener('scroll', function (event) {
 window.addEventListener('message', function (event) {
   switch (event.data.action) {
     case actions.FULLSCREEN:
-      slot.style.width = '100%';
-      slot.style.height = '100%';
+      slotElement.style.width = '100%';
+      slotElement.style.height = '100%';
       break;
     case actions.HIDDEN:
-      slot.style.width = '0';
-      slot.style.height = '0';
+      slotElement.style.width = '0';
+      slotElement.style.height = '0';
       break;
     case actions.NORMAL:
-      slot.style.width = '100%';
-      slot.style.height = height + 'px';
+      slotElement.style.width = '100%';
+      slotElement.style.height = slotHeight + 'px';
       break;
     case actions.DATA:
       iframe.contentWindow.postMessage(
