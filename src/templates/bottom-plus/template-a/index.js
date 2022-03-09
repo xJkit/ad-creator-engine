@@ -1,15 +1,13 @@
-/* Ads loading order:
- ** 1. play opening animation
- ** 2. appier slot state changes: hidden -> normal
- */
+import { actions } from 'src/constants';
 
 /** global variables */
-// parent document dimensions
 let documentScrollTop = 0;
 let documentScrollHeight = 0;
+let shouldPlayEntryAnimation = true; // optional
+/***** */
 
-window.addEventListener('message', function (event) {
-  if (event.data.action === 'AppierSlotScroll') {
+window.addEventListener('message', (event) => {
+  if (event.data.action === actions.SCROLL) {
     documentScrollTop = event.data.documentScrollTop;
     documentScrollHeight = event.data.documentScrollHeight;
     document.querySelector(
@@ -17,7 +15,7 @@ window.addEventListener('message', function (event) {
     ).innerHTML = `Appier Ads inside iframe:(scrollTop, scrollHeight) = (${documentScrollTop}, ${documentScrollHeight})`;
     // window.parent.postMessage({ action: 'AppierSlotFullscreen' }, '*');
   }
-  if (event.data.action === 'AppierSlotData') {
+  if (event.data.action === actions.DATA) {
     console.log('child get ins data: ', event.data.data);
   }
 });
@@ -28,13 +26,13 @@ var start = function () {
   var timer = setInterval(() => {
     i -= 1;
     if (i === -1) {
-      window.parent.postMessage({ action: 'AppierSlotNormal' }, '*');
+      window.parent.postMessage({ a9ction: actions.NORMAL }, '*');
       clearInterval(timer);
     }
   }, 1000);
 };
 
-window.addEventListener('load', function () {
+window.addEventListener('load', () => {
   // window.parent.postMessage({ action: 'AppierSlotHidden' }, '*');
   const element = document.createElement('span');
   element.classList.add('content');

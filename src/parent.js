@@ -1,7 +1,7 @@
-const appierInsId = 'appier_ins_script';
+import { actions } from './constants';
 
-document.write(`<div id=${appierInsId}></div>`);
-var insTag = document.getElementById(appierInsId).parentNode;
+document.write("<div id='appier_ins_script'></div>");
+var insTag = document.getElementById('appier_ins_script').parentNode;
 var urlParams = new URLSearchParams(window.location.search);
 var previewUrl =
   urlParams.get('url') || insTag.getAttribute('data-preview-url');
@@ -34,7 +34,7 @@ insTag.parentNode.insertBefore(slot, insTag.nextSibling);
 window.addEventListener('scroll', function (event) {
   iframe.contentWindow.postMessage(
     {
-      action: 'AppierSlotScroll',
+      action: actions.SCROLL,
       documentScrollTop: document.documentElement.scrollTop,
       documentScrollHeight: document.documentElement.scrollHeight,
     },
@@ -45,7 +45,7 @@ window.addEventListener('scroll', function (event) {
 window.addEventListener('load', function () {
   iframe.contentWindow.postMessage(
     {
-      action: 'AppierSlotData',
+      action: actions.DATA,
       data: data,
     },
     '*'
@@ -54,15 +54,15 @@ window.addEventListener('load', function () {
 
 window.addEventListener('message', function (event) {
   switch (event.data.action) {
-    case 'AppierSlotFullscreen':
+    case actions.FULLSCREEN:
       slot.style.width = '100%';
       slot.style.height = '100%';
       break;
-    case 'AppierSlotHidden':
+    case actions.HIDDEN:
       slot.style.width = '0';
       slot.style.height = '0';
       break;
-    case 'AppierSlotNormal':
+    case actions.NORMAL:
       slot.style.width = '100%';
       slot.style.height = height + 'px';
       break;

@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack-dev-server --mode development --open",
     "start": "npm run build && node server.js",
-    "build": "rimraf dist && NODE_ENV=production webpack"
+    "build:dev": "rimraf dist && NODE_ENV=development webpack",
+    "build:prod": "rimraf dist && NODE_ENV=production webpack"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,9 @@
   },
   "homepage": "https://github.com/xJkit/ad-creator-engine#readme",
   "dependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.3",
     "css-loader": "^6.6.0",
     "html-webpack-plugin": "^5.5.0",
     "html-webpack-skip-assets-plugin": "^1.0.3",
