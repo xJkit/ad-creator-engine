@@ -7,10 +7,10 @@ const entry = {
     filename: 'parent.js',
   },
   // template name: bottom plus, template a
-  'bottom-plus-template-a': [
-    path.resolve(__dirname, './templates/bottom-plus/template-a/index.js'),
-    path.resolve(__dirname, './templates/bottom-plus/template-a/index.scss'),
-  ],
+  'bottom-plus-template-a': path.resolve(
+    __dirname,
+    './templates/bottom-plus/template-a'
+  ),
 };
 
 module.exports = entry;

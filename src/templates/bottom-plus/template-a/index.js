@@ -1,4 +1,5 @@
 import { actions } from 'src/constants';
+import './index.scss';
 
 /** global variables */
 let documentScrollTop = 0;
@@ -26,7 +27,7 @@ var start = function () {
   var timer = setInterval(() => {
     i -= 1;
     if (i === -1) {
-      window.parent.postMessage({ a9ction: actions.NORMAL }, '*');
+      window.parent.postMessage({ action: actions.NORMAL }, '*');
       clearInterval(timer);
     }
   }, 1000);
