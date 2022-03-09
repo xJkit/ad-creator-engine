@@ -4,4 +4,5 @@ export const actions = {
   NORMAL: 'AppierSlotNormal',
   FULLSCREEN: 'AppierSlotFullscreen',
   HIDDEN: 'AppierSlotHidden',
+  LOADED: 'AppierSlotLoaded',
 };

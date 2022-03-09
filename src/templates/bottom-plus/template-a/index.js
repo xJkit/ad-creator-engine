@@ -1,21 +1,22 @@
 import { actions } from '../../../constants';
 import animate from './animate';
+import insDefaultSettings from './insDefaultSettings.json';
 import './index.scss';
 
 /** global variables */
-let insDataSettings = {};
+let insDataSettings = insDefaultSettings;
 let documentScrollTop = 0;
 let documentScrollHeight = 0;
 /***** */
 
 window.addEventListener('DOMContentLoaded', () => {
   window.parent.postMessage({
-    action: actions.DATA,
+    action: actions.LOADED,
+    insDefaultSettings: insDefaultSettings,
   });
 });
 
 window.addEventListener('load', () => {
-  // window.parent.postMessage({ action: 'AppierSlotHidden' }, '*');
   document.querySelector(
     '.scroll'
   ).innerHTML = `(scrollTop, scrollHeight) = (${documentScrollTop}, ${documentScrollHeight})`;
@@ -27,16 +28,20 @@ window.addEventListener('load', () => {
 });
 
 window.addEventListener('message', (event) => {
-  if (event.data.action === actions.SCROLL) {
-    documentScrollTop = event.data.documentScrollTop;
-    documentScrollHeight = event.data.documentScrollHeight;
-    document.querySelector(
-      '.scroll'
-    ).innerHTML = `(scrollTop, scrollHeight) = (${documentScrollTop}, ${documentScrollHeight})`;
-    // window.parent.postMessage({ action: 'AppierSlotFullscreen' }, '*');
-  }
-  if (event.data.action === actions.DATA) {
-    insDataSettings = event.data.data;
+  switch (event.data.action) {
+    case actions.SCROLL:
+      documentScrollTop = event.data.documentScrollTop;
+      documentScrollHeight = event.data.documentScrollHeight;
+      document.querySelector(
+        '.scroll'
+      ).innerHTML = `(scrollTop, scrollHeight) = (${documentScrollTop}, ${documentScrollHeight})`;
+      break;
+    case actions.DATA:
+      insDataSettings = {
+        ...insDataSettings,
+        ...event.data.data,
+      };
+      break;
   }
 });
 

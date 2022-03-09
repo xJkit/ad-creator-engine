@@ -8,9 +8,6 @@ let slotHeight;
 window.addEventListener('load', function () {
   console.log('parent loaded');
   const insTag = document.getElementById('appier-ins-template-config');
-  const urlParams = new URLSearchParams(window.location.search);
-  const previewUrl =
-    urlParams.get('url') || insTag.getAttribute('data-preview-url');
   insDataSettings = Array.prototype.slice
     .call(insTag.attributes)
     .reduce(function (acc, attr) {
@@ -18,6 +15,10 @@ window.addEventListener('load', function () {
         ? Object.assign(acc, { [attr.nodeName]: attr.nodeValue })
         : acc;
     }, {});
+  console.log('insDataSettings: ', insDataSettings);
+  const urlParams = new URLSearchParams(window.location.search);
+  const previewUrl =
+    urlParams.get('url') || insDataSettings['data-preview-url'];
 
   // Ad contents itself
   iframe = document.createElement('iframe');
@@ -27,7 +28,7 @@ window.addEventListener('load', function () {
 
   // Ad content wrapper slot DOM: change dimensions by postMessage event below
   slotElement = document.createElement('div');
-  slotHeight = parseInt(insTag.getAttribute('data-height'), 10) || 100;
+  slotHeight = parseInt(insDataSettings['data-height'], 10) || 100;
   slotElement.id = 'appier_preview_slot';
   slotElement.style =
     'z-index: 2147483647; bottom: 0; left: 0; position: fixed; width: 100%; height: ' +
@@ -72,6 +73,9 @@ window.addEventListener('message', function (event) {
         '*'
       );
       break;
+    case actions.LOADED:
+      slotHeight = parseInt(event.data.defaultSettings['data-height'], 10);
+      slotElement.style.height = slotHeight + 'px';
   }
 });
 
