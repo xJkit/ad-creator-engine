@@ -8,3 +8,11 @@ $custom-font-size: 9;
   font-weight: $custom-font-weight;
   font-size: $custom-font-size;
 }
+
+.logo {
+  display: inline-block;
+  width: 150px;
+  height: auto;
+  margin-bottom: 4rem;
+  margin-top: 3rem;
+}

@@ -1,13 +1,15 @@
 import { actions } from './constants';
 
 let iframe;
+let insDataSettings;
 
 window.addEventListener('load', function () {
+  console.log('parent loaded');
   var insTag = document.getElementById('appier-ins-template-config');
   var urlParams = new URLSearchParams(window.location.search);
   var previewUrl =
     urlParams.get('url') || insTag.getAttribute('data-preview-url');
-  var data = Array.prototype.slice
+  insDataSettings = Array.prototype.slice
     .call(insTag.attributes)
     .reduce(function (acc, attr) {
       return attr.nodeName.indexOf('data-') === 0
@@ -32,14 +34,6 @@ window.addEventListener('load', function () {
   slot.appendChild(iframe);
 
   insTag.parentNode.insertBefore(slot, insTag.nextSibling);
-
-  iframe.contentWindow.postMessage(
-    {
-      action: actions.DATA,
-      data: data,
-    },
-    '*'
-  );
 });
 
 window.addEventListener('scroll', function (event) {
@@ -66,6 +60,15 @@ window.addEventListener('message', function (event) {
     case actions.NORMAL:
       slot.style.width = '100%';
       slot.style.height = height + 'px';
+      break;
+    case actions.DATA:
+      iframe.contentWindow.postMessage(
+        {
+          action: actions.DATA,
+          data: insDataSettings,
+        },
+        '*'
+      );
       break;
   }
 });

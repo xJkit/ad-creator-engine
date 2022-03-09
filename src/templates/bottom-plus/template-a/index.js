@@ -3,17 +3,23 @@ import animate from './animate';
 import './index.scss';
 
 /** global variables */
+let insDataSettings = {};
 let documentScrollTop = 0;
 let documentScrollHeight = 0;
-let shouldPlayEntryAnimation = true; // optional
 /***** */
+
+window.addEventListener('DOMContentLoaded', () => {
+  console.log('child content loaded');
+  window.parent.postMessage({
+    action: actions.DATA,
+  });
+});
 
 window.addEventListener('load', () => {
   // window.parent.postMessage({ action: 'AppierSlotHidden' }, '*');
-  const element = document.createElement('span');
-  element.classList.add('content');
-  element.innerHTML = `Appier Ads inside iframe:(scrollTop, scrollHeight) = (${documentScrollTop}, ${documentScrollHeight})`;
-  document.body.appendChild(element);
+  document.querySelector(
+    '.scroll'
+  ).innerHTML = `(scrollTop, scrollHeight) = (${documentScrollTop}, ${documentScrollHeight})`;
 
   // start the animation
   animate();
@@ -24,23 +30,12 @@ window.addEventListener('message', (event) => {
     documentScrollTop = event.data.documentScrollTop;
     documentScrollHeight = event.data.documentScrollHeight;
     document.querySelector(
-      '.content'
-    ).innerHTML = `Appier Ads inside iframe:(scrollTop, scrollHeight) = (${documentScrollTop}, ${documentScrollHeight})`;
+      '.scroll'
+    ).innerHTML = `(scrollTop, scrollHeight) = (${documentScrollTop}, ${documentScrollHeight})`;
     // window.parent.postMessage({ action: 'AppierSlotFullscreen' }, '*');
   }
   if (event.data.action === actions.DATA) {
-    console.log('child get ins data: ', event.data.data);
+    insDataSettings = event.data.data;
+    console.log('[insDataSettings] ', insDataSettings);
   }
 });
-
-var isStarted = false;
-var start = function () {
-  var i = 5;
-  var timer = setInterval(() => {
-    i -= 1;
-    if (i === -1) {
-      window.parent.postMessage({ action: actions.NORMAL }, '*');
-      clearInterval(timer);
-    }
-  }, 1000);
-};
