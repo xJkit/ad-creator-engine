@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --mode development --open",
     "start": "npm run build && node server.js",
+    "format": "npx prettier --write src/",
     "build:dev": "rimraf dist && NODE_ENV=development webpack",
     "build": "rimraf dist && NODE_ENV=production webpack"
   },
@@ -40,5 +41,10 @@
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "eslint-config-eslint": "^7.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "prettier": "2.5.1",
+    "prettier-eslint": "^13.0.0"
+  }
 }

@@ -21,21 +21,15 @@ class ButtomPlusTemplateA extends Template {
 
   TemplateDidLoad() {
     document.querySelector(
-      '.scroll'
+      '.scroll',
     ).innerHTML = `(scrollTop, scrollHeight) = (${this.documentScrollTop}, ${this.documentScrollHeight})`;
 
     console.log('[child loaded]');
     console.log('[insDataSetting] ', this.insDataSettings);
 
-    document
-      .querySelector('.full-screen')
-      .addEventListener('click', this.onFullScreenClick);
-    document
-      .querySelector('.normal')
-      .addEventListener('click', this.onNormalClick);
-    document
-      .querySelector('.hidden')
-      .addEventListener('click', this.onHiddenClick);
+    document.querySelector('.full-screen').addEventListener('click', this.onFullScreenClick);
+    document.querySelector('.normal').addEventListener('click', this.onNormalClick);
+    document.querySelector('.hidden').addEventListener('click', this.onHiddenClick);
 
     // start the animation
     animate();
@@ -47,7 +41,7 @@ class ButtomPlusTemplateA extends Template {
         this.documentScrollTop = event.data.documentScrollTop;
         this.documentScrollHeight = event.data.documentScrollHeight;
         document.querySelector(
-          '.scroll'
+          '.scroll',
         ).innerHTML = `(scrollTop, scrollHeight) = (${this.documentScrollTop}, ${this.documentScrollHeight})`;
         break;
       case actions.DATA:

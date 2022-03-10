@@ -8,17 +8,12 @@ let slotHeight;
 window.addEventListener('load', function () {
   console.log('[parent loaded]');
   const insTag = document.getElementById('appier-ins-template-config');
-  insDataSettings = Array.prototype.slice
-    .call(insTag.attributes)
-    .reduce(function (acc, attr) {
-      return attr.nodeName.indexOf('data-') === 0
-        ? Object.assign(acc, { [attr.nodeName]: attr.nodeValue })
-        : acc;
-    }, {});
+  insDataSettings = Array.prototype.slice.call(insTag.attributes).reduce(function (acc, attr) {
+    return attr.nodeName.indexOf('data-') === 0 ? Object.assign(acc, { [attr.nodeName]: attr.nodeValue }) : acc;
+  }, {});
   console.log('insDataSettings: ', insDataSettings);
   const urlParams = new URLSearchParams(window.location.search);
-  const previewUrl =
-    urlParams.get('url') || insDataSettings['data-preview-url'];
+  const previewUrl = urlParams.get('url') || insDataSettings['data-preview-url'];
 
   // Ad contents itself
   iframe = document.createElement('iframe');
@@ -46,7 +41,7 @@ window.addEventListener('scroll', function (event) {
       documentScrollTop: document.documentElement.scrollTop,
       documentScrollHeight: document.documentElement.scrollHeight,
     },
-    '*'
+    '*',
   );
 });
 
@@ -74,7 +69,7 @@ window.addEventListener('message', function (event) {
           action: actions.DATA,
           data: insDataSettings,
         },
-        '*'
+        '*',
       );
       break;
     }

@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "eslint",
+    "prettier"
+  ],
+  "rules": {
+    "indent": "warn",
+    "comma-dangle": "warn"
+  }
+}
