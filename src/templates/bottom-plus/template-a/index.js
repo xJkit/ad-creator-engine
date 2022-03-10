@@ -1,5 +1,5 @@
-import Template from '../../../common/Template';
-import { actions } from '../../../constants';
+import Template from 'common/Template';
+import { actions } from 'src/constants';
 import animate from './animate';
 import insDefaultSetting from './insDefaultSetting.json';
 import './index.scss';

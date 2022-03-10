@@ -11,17 +11,6 @@ const isDevMode = process.env.NODE_ENV !== 'production';
 // template file name
 const TEMPLATE_FILENAME = 'template_a';
 
-// common plugins
-const commonConfigPlugIns = [
-  new HtmlWebpackPlugin({
-    filename: `${TEMPLATE_FILENAME}.html`,
-    template: path.resolve(
-      __dirname,
-      './src/templates/bottom-plus/template-a/index.template.html'
-    ),
-    excludeAssets: [/parent.js/],
-  }),
-];
 // webpack.config.js
 module.exports = {
   entry: templateEntry,
@@ -41,7 +30,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(png|jpg|gif)$/i,
+        test: /\.(png|jpg|gif|mp4|jpeg|webp)$/i,
         type: 'asset/resource',
       },
       {
@@ -72,7 +61,16 @@ module.exports = {
       },
     ],
   },
-  plugins: [...commonConfigPlugIns].concat(
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: `${TEMPLATE_FILENAME}.html`,
+      template: path.resolve(
+        __dirname,
+        './src/templates/bottom-plus/template-a/index.template.html'
+      ),
+      excludeAssets: [/parent.js/],
+    }),
+  ].concat(
     isDevMode
       ? [
           // parent test html
