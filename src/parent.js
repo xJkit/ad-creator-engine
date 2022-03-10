@@ -28,7 +28,7 @@ window.addEventListener('load', function () {
 
   // Ad content wrapper slot DOM: change dimensions by postMessage event below
   slotElement = document.createElement('div');
-  slotHeight = parseInt(insDataSettings['data-height'], 10) || 100;
+  slotHeight = parseInt(insDataSettings['data-height'], 10) || 0;
   slotElement.id = 'appier_preview_slot';
   slotElement.style =
     'z-index: 2147483647; bottom: 0; left: 0; position: fixed; width: 100%; height: ' +
@@ -64,7 +64,11 @@ window.addEventListener('message', function (event) {
       slotElement.style.width = '100%';
       slotElement.style.height = slotHeight + 'px';
       break;
-    case actions.DATA:
+    case actions.LOADED: {
+      const defaultSetting = event.data.insDefaultSetting || {};
+      insDataSettings = { ...defaultSetting, ...insDataSettings };
+      slotHeight = parseInt(insDataSettings['data-height'], 10);
+      slotElement.style.height = slotHeight + 'px';
       iframe.contentWindow.postMessage(
         {
           action: actions.DATA,
@@ -73,9 +77,7 @@ window.addEventListener('message', function (event) {
         '*'
       );
       break;
-    case actions.LOADED:
-      slotHeight = parseInt(event.data.defaultSettings['data-height'], 10);
-      slotElement.style.height = slotHeight + 'px';
+    }
   }
 });
 

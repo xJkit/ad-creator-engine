@@ -1,12 +1,12 @@
 import Template from '../../../common/Template';
 import { actions } from '../../../constants';
 import animate from './animate';
-import insDefaultSettings from './insDefaultSettings.json';
+import insDefaultSetting from './insDefaultSetting.json';
 import './index.scss';
 
 class ButtomPlusTemplateA extends Template {
   /** global properties */
-  insDataSettings = insDefaultSettings;
+  insDataSettings = insDefaultSetting;
   documentScrollTop = 0;
   documentScrollHeight = 0;
   /***** */
@@ -15,7 +15,7 @@ class ButtomPlusTemplateA extends Template {
   TemplateDOMLoad() {
     Template.postMessage({
       action: actions.LOADED,
-      insDefaultSettings: insDefaultSettings,
+      insDefaultSetting: insDefaultSetting,
     });
   }
 
@@ -52,7 +52,6 @@ class ButtomPlusTemplateA extends Template {
         break;
       case actions.DATA:
         this.insDataSettings = {
-          ...this.insDataSettings,
           ...event.data.data,
         };
         break;

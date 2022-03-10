@@ -6,9 +6,9 @@ export default class Template {
   constructor() {
     // bind this execution contexts
     this.TemplateDOMLoad = this.TemplateDOMLoad.bind(this);
+    this.message = this.message.bind(this);
     this.TemplateDidLoad = this.TemplateDidLoad.bind(this);
     this.TemplateWillUnload = this.TemplateWillUnload.bind(this);
-    this.message = this.message.bind(this);
 
     // prepare event listeners
     window.addEventListener('DOMContentLoaded', this.TemplateDOMLoad);
