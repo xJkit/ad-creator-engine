@@ -9,6 +9,9 @@
     "build:dev": "rimraf dist && NODE_ENV=development webpack",
     "build": "rimraf dist && NODE_ENV=production webpack"
   },
+  "engines": {
+    "node": "16"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/xJkit/ad-creator-engine.git"
