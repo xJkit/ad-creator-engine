@@ -11,6 +11,7 @@ class ButtomPlusTemplateA extends Template {
   documentScrollHeight = 0;
   /***** */
 
+  /**  Template Life Cycle */
   TemplateDOMLoad() {
     Template.postMessage({
       action: actions.LOADED,
@@ -25,8 +26,6 @@ class ButtomPlusTemplateA extends Template {
 
     console.log('[child loaded]');
     console.log('[insDataSetting] ', this.insDataSettings);
-    // start the animation
-    animate();
 
     document
       .querySelector('.full-screen')
@@ -37,6 +36,9 @@ class ButtomPlusTemplateA extends Template {
     document
       .querySelector('.hidden')
       .addEventListener('click', this.onHiddenClick);
+
+    // start the animation
+    animate();
   }
 
   message(event) {
@@ -57,6 +59,7 @@ class ButtomPlusTemplateA extends Template {
     }
   }
 
+  /** Other Custom Methods  */
   onFullScreenClick = () => {
     Template.postMessage({
       action: actions.FULLSCREEN,
