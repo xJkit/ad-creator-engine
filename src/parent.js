@@ -6,7 +6,7 @@ let slotElement;
 let slotHeight;
 
 window.addEventListener('load', function () {
-  console.log('parent loaded');
+  console.log('[parent loaded]');
   const insTag = document.getElementById('appier-ins-template-config');
   insDataSettings = Array.prototype.slice
     .call(insTag.attributes)
