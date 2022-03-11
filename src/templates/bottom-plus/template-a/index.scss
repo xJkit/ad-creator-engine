@@ -3,6 +3,12 @@ $deep-blue: #123aaa;
 $custom-font-weight: 900;
 $custom-font-size: 9;
 
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 html,
 body {
   height: 100%;
@@ -24,4 +30,18 @@ body {
   height: auto;
   margin-bottom: 4rem;
   margin-top: 3rem;
+}
+
+.entryAnimate {
+  width: 100%;
+  height: 100%;
+  &__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  img {
+    opacity: 0;
+  }
 }
