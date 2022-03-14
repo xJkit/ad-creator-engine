@@ -1,5 +1,6 @@
 import { gsap } from 'gsap';
 
+const parent = window.parent.document.documentElement;
 export default class EntryAnimate {
   #target;
   constructor({ reverse = false } = {}) {
@@ -14,13 +15,41 @@ export default class EntryAnimate {
     if (!this.#target) {
       throw new Error("doesn't find [entryAnimate__target]");
     }
-    this.distance = this.h / 2 / this.#target.offsetHeight / 2;
+    this.distance = this.windowHeight / 2 + this.#target.offsetHeight / 2;
+
     gsap.set(this.#target, {
-      y: `${this.reverse ? '-' : ''}${this.distance}`,
+      y: `${!this.reverse ? '-' : ''}${this.distance}`,
       onComplete: () => {
         this.start();
       },
     });
   }
-  start() {}
+  start() {
+    // lock window scroll
+    parent.style.height = '100%';
+    parent.style.overflow = 'hidden';
+    parent.touchAction = 'none';
+
+    // animate
+    // if does't set delay, animate will start with onFullScreen effect together
+    const tl = gsap.timeline({ delay: 0.5 });
+    tl.to(this.#target, {
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      ease: 'easeOut',
+    }).to(
+      this.#target,
+      {
+        y: `${this.reverse ? '-' : ''}${this.distance}`,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'easeIn',
+        onComplete: () => {
+          console.log('entry animate end');
+        },
+      },
+      '+=1.7',
+    );
+  }
 }
