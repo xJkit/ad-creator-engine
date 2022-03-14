@@ -27,6 +27,7 @@ export default function animate({ renderHeight: { fullScreen, normalScreen } }) 
 }
 
 function prepareSlot(tl, normalScreen) {
+  tl.addLabel('slot', '+=3');
   tl.to(
     '.slot',
     {
@@ -34,10 +35,19 @@ function prepareSlot(tl, normalScreen) {
       duration: 0.5,
       onComplete: function () {
         normalScreen();
+      },
+    },
+    'slot',
+  ).to(
+    '.slot__banner',
+    {
+      scale: 1,
+      duration: 0.5,
+      onComplete: function () {
         window.parent.document.documentElement.removeAttribute('style');
       },
     },
-    '+=3',
+    'slot+=0.05',
   );
 }
 

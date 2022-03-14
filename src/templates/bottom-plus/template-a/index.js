@@ -28,9 +28,8 @@ class ButtomPlusTemplateA extends Template {
     console.log('[child loaded]');
     console.log('[insDataSetting] ', this.insDataSettings);
 
-    // document.querySelector('.full-screen').addEventListener('click', this.onFullScreenClick);
-    // document.querySelector('.normal').addEventListener('click', this.onNormalClick);
-    // document.querySelector('.hidden').addEventListener('click', this.onHiddenClick);
+    // set slot height
+    document.querySelector('.slot').style.height = this.insDataSettings['data-height'] + 'px';
 
     // start the animation
     this.animate = animate({
@@ -58,11 +57,6 @@ class ButtomPlusTemplateA extends Template {
   }
 
   /** Other Custom Methods  */
-  currentPositionTransform = (documentScrollTop) => {
-    const sp = documentScrollTop < this.triggerDistance ? 0 : Math.floor(documentScrollTop / this.triggerDistance);
-    console.log(this.slotElementLength);
-  };
-
   onFullScreen = () => {
     Template.postMessage({
       action: actions.FULLSCREEN,
