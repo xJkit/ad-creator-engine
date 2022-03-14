@@ -17,7 +17,7 @@ window.addEventListener('load', function () {
 
   // Ad contents itself
   iframe = document.createElement('iframe');
-  iframe.style = 'width: 100%; height: 100%;';
+  iframe.style = 'width: 100%; height: 100%; border: none';
   iframe.setAttribute('allowtransparency', true);
   iframe.src = previewUrl;
 
