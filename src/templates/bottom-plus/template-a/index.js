@@ -32,9 +32,9 @@ class ButtomPlusTemplateA extends Template {
     // document.querySelector('.hidden').addEventListener('click', this.onHiddenClick);
 
     // start the animation
-    animate({
-      renderHeight: this.onFullScreen,
-    });
+    // animate({
+    //   renderHeight: this.onFullScreen,
+    // });
   }
 
   message(event) {
