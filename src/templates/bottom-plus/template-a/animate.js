@@ -1,7 +1,8 @@
 import gsap from 'gsap';
 import EntryAnimate from 'common/EntryAnimate';
 
-export default function animate() {
+export default function animate({ renderHeight = console.log }) {
+  renderHeight();
   // 1. entry animtion
   new EntryAnimate();
   // 2. slot animation

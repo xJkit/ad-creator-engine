@@ -32,7 +32,9 @@ class ButtomPlusTemplateA extends Template {
     // document.querySelector('.hidden').addEventListener('click', this.onHiddenClick);
 
     // start the animation
-    animate();
+    animate({
+      renderHeight: this.onFullScreen,
+    });
   }
 
   message(event) {
@@ -53,7 +55,7 @@ class ButtomPlusTemplateA extends Template {
   }
 
   /** Other Custom Methods  */
-  onFullScreenClick = () => {
+  onFullScreen = () => {
     Template.postMessage({
       action: actions.FULLSCREEN,
     });
