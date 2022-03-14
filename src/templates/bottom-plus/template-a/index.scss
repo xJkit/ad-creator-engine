@@ -19,7 +19,7 @@ body {
   height: 100%;
   text-align: center;
   color: $deep-blue;
-  background-color: $jj-green;
+  // background-color: $jj-green;
   font-weight: $custom-font-weight;
   font-size: $custom-font-size;
 }
@@ -33,8 +33,12 @@ body {
 }
 
 .entryAnimate {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  z-index: 10;
   &__container {
     position: absolute;
     top: 50%;
@@ -50,7 +54,7 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: pink;
+  transform: translateY(100%);
   &__products {
     position: absolute;
     bottom: 0;

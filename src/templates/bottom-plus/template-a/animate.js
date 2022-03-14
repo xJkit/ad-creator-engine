@@ -1,15 +1,59 @@
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 import EntryAnimate from 'common/EntryAnimate';
 
-export default function animate({ renderHeight = console.log }) {
-  renderHeight();
-  // 1. entry animtion
-  new EntryAnimate();
-  // 2. slot animation
-  // gsap.to('.logo', {
-  //   rotation: '+=360',
-  //   duration: 5,
-  //   repeat: -1,
-  //   ease: 'linear',
-  // });
+const triggerDistance = 1000;
+
+export default function animate({ renderHeight: { fullScreen, normalScreen } }) {
+  let isFirst = true;
+  const tl = gsap.timeline();
+  const entryAnimate = new EntryAnimate();
+  let currentIndex = 0;
+
+  return function (documentScrollTop, documentScrollHeight) {
+    currentIndex = getCurrentIndex(documentScrollTop);
+    console.log(currentIndex);
+    if (isFirst && documentScrollTop <= 20) {
+      // 1. entry animtion
+      isFirst = false;
+      fullScreen();
+      entryAnimate.start();
+      // slot animation delay 3.5s
+      prepareSlot(tl, normalScreen);
+    } else {
+      // 2. slot animation
+      scrollHandle(tl, currentIndex);
+    }
+  };
+}
+
+function prepareSlot(tl, normalScreen) {
+  tl.to(
+    '.slot',
+    {
+      y: 0,
+      duration: 0.5,
+      onComplete: function () {
+        normalScreen();
+        window.parent.document.documentElement.removeAttribute('style');
+      },
+    },
+    '+=3',
+  );
+}
+
+function scrollHandle(tl, currentIndex) {
+  gsap.to(document.querySelectorAll(`.slot__product:not(:nth-child(${currentIndex + 1}))`), { y: 20, duration: 0.5 });
+  gsap.to(document.querySelectorAll('.slot__product')[currentIndex], {
+    y: 0,
+    duration: 0.5,
+  });
+}
+
+function getCurrentIndex(documentScrollTop) {
+  const slotElementLength = document.querySelectorAll('.slot__product').length;
+  let currentIndex = documentScrollTop < triggerDistance ? 0 : Math.floor(documentScrollTop / triggerDistance);
+
+  if (currentIndex >= slotElementLength) currentIndex = slotElementLength;
+
+  return currentIndex;
 }

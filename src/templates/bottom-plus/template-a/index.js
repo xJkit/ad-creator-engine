@@ -9,6 +9,7 @@ class ButtomPlusTemplateA extends Template {
   insDataSettings = insDefaultSetting;
   documentScrollTop = 0;
   documentScrollHeight = 0;
+  animate;
   /***** */
 
   /**  Template Life Cycle */
@@ -32,9 +33,12 @@ class ButtomPlusTemplateA extends Template {
     // document.querySelector('.hidden').addEventListener('click', this.onHiddenClick);
 
     // start the animation
-    // animate({
-    //   renderHeight: this.onFullScreen,
-    // });
+    this.animate = animate({
+      renderHeight: {
+        fullScreen: this.onFullScreen,
+        normalScreen: this.onNormal,
+      },
+    });
   }
 
   message(event) {
@@ -42,9 +46,8 @@ class ButtomPlusTemplateA extends Template {
       case actions.SCROLL:
         this.documentScrollTop = event.data.documentScrollTop;
         this.documentScrollHeight = event.data.documentScrollHeight;
-        // document.querySelector(
-        //   '.scroll',
-        // ).innerHTML = `(scrollTop, scrollHeight) = (${this.documentScrollTop}, ${this.documentScrollHeight})`;
+        this.animate(this.documentScrollTop, this.documentScrollHeight);
+
         break;
       case actions.DATA:
         this.insDataSettings = {
@@ -55,13 +58,18 @@ class ButtomPlusTemplateA extends Template {
   }
 
   /** Other Custom Methods  */
+  currentPositionTransform = (documentScrollTop) => {
+    const sp = documentScrollTop < this.triggerDistance ? 0 : Math.floor(documentScrollTop / this.triggerDistance);
+    console.log(this.slotElementLength);
+  };
+
   onFullScreen = () => {
     Template.postMessage({
       action: actions.FULLSCREEN,
     });
   };
 
-  onNormalClick = () => {
+  onNormal = () => {
     Template.postMessage({
       action: actions.NORMAL,
     });
