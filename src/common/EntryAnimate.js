@@ -19,16 +19,13 @@ export default class EntryAnimate {
 
     gsap.set(this.#target, {
       y: `${!this.reverse ? '-' : ''}${this.distance}`,
-      onComplete: () => {
-        this.start();
-      },
     });
   }
   start() {
     // lock window scroll
     parent.style.height = '100%';
     parent.style.overflow = 'hidden';
-    parent.touchAction = 'none';
+    parent.style.touchAction = 'none';
 
     // animate
     // if does't set delay, animate will start with onFullScreen effect together
