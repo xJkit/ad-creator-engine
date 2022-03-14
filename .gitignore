@@ -1,6 +1,9 @@
 # npm modules
 node_modules
 
+# use yarn lock file rather than npm
+package-lock.json
+
 # useless log files
 npm-debug.log
 yarn-error.log
