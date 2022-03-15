@@ -19,25 +19,26 @@ class ButtomPlusTemplateA extends Template {
       action: actions.LOADED,
       insDefaultSetting: insDefaultSetting,
     });
+    // new Carousel({
+    //   target: document.querySelectorAll('.expand__banner'),
+    // });
   }
 
   TemplateDidLoad() {
     console.log('[child loaded]');
     console.log('[insDataSetting] ', this.insDataSettings);
-    this.onFullScreen();
-    new Carousel({
-      target: document.querySelectorAll('.expand__banner'),
-    });
+    // this.onFullScreen();
+
     // set slot height
-    // document.querySelector('.slot').style.height = this.insDataSettings['data-height'] + 'px';
+    document.querySelector('.slot').style.height = this.insDataSettings['data-height'] + 'px';
 
     // start the animation
-    // this.animate = animate({
-    //   renderHeight: {
-    //     fullScreen: this.onFullScreen,
-    //     normalScreen: this.onNormal,
-    //   },
-    // });
+    this.animate = animate({
+      renderHeight: {
+        fullScreen: this.onFullScreen,
+        normalScreen: this.onNormal,
+      },
+    });
   }
 
   message(event) {
@@ -45,7 +46,7 @@ class ButtomPlusTemplateA extends Template {
       case actions.SCROLL:
         this.documentScrollTop = event.data.documentScrollTop;
         this.documentScrollHeight = event.data.documentScrollHeight;
-        // this.animate(this.documentScrollTop, this.documentScrollHeight);
+        this.animate(this.documentScrollTop, this.documentScrollHeight);
 
         break;
       case actions.DATA:
