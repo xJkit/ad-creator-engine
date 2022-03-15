@@ -61,7 +61,8 @@ function prepareSlot(tl, normalScreen) {
         },
       },
       'slot+=0.05',
-    );
+    )
+    .to('.slot__close', { opacity: 1, duration: 0.5 }, 'slot+=0.5');
 }
 
 function scrollHandle(tl, currentIndex) {
