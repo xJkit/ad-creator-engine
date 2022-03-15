@@ -21,10 +21,6 @@ class ButtomPlusTemplateA extends Template {
   }
 
   TemplateDidLoad() {
-    // document.querySelector(
-    //   '.scroll',
-    // ).innerHTML = `(scrollTop, scrollHeight) = (${this.documentScrollTop}, ${this.documentScrollHeight})`;
-
     console.log('[child loaded]');
     console.log('[insDataSetting] ', this.insDataSettings);
 

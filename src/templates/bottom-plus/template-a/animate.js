@@ -38,17 +38,30 @@ function prepareSlot(tl, normalScreen) {
       },
     },
     'slot',
-  ).to(
-    '.slot__banner',
-    {
-      scale: 1,
-      duration: 0.5,
-      onComplete: function () {
-        window.parent.document.documentElement.removeAttribute('style');
+  )
+    .to(
+      '.slot__banner',
+      {
+        scale: 1,
+        duration: 0.5,
+        onComplete: function () {
+          window.parent.document.documentElement.removeAttribute('style');
+        },
       },
-    },
-    'slot+=0.05',
-  );
+      'slot+=0.05',
+    )
+    .to(
+      '.slot__video',
+      {
+        opacity: 1,
+        duration: 0.5,
+        onComplete: function () {
+          // video start play
+          document.querySelector('video').play();
+        },
+      },
+      'slot+=0.05',
+    );
 }
 
 function scrollHandle(tl, currentIndex) {
