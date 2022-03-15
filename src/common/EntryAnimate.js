@@ -25,7 +25,8 @@ export default class EntryAnimate {
     // lock window scroll
     parent.style.height = '100%';
     parent.style.overflow = 'hidden';
-    parent.style.touchAction = 'none';
+    window.parent.document.body.style.overflow = 'hidden';
+    window.parent.document.body.style.height = '100vh';
 
     // animate
     // if does't set delay, animate will start with onFullScreen effect together

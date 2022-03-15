@@ -46,6 +46,7 @@ function prepareSlot(tl, normalScreen) {
         duration: 0.5,
         onComplete: function () {
           window.parent.document.documentElement.removeAttribute('style');
+          window.parent.document.body.removeAttribute('style');
         },
       },
       'slot+=0.05',
@@ -55,7 +56,7 @@ function prepareSlot(tl, normalScreen) {
       {
         opacity: 1,
         duration: 0.5,
-        onComplete: function () {
+        onStart: function () {
           // video start play
           document.querySelector('video').play();
         },
