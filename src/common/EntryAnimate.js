@@ -44,7 +44,8 @@ export default class EntryAnimate {
         duration: 0.8,
         ease: 'easeIn',
         onComplete: () => {
-          console.log('entry animate end');
+          // entry animate end
+          document.querySelector('.entryAnimate').remove();
         },
       },
       '+=1.7',
