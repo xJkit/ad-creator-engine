@@ -57,6 +57,21 @@ body {
   width: 100%;
   height: 100%;
   transform: translateY(100%);
+  &__general {
+    height: 20px;
+    img {
+      width: 100%;
+      display: block;
+      height: 100%;
+      width: auto;
+      margin: 0 auto;
+    }
+  }
+  &__container {
+    width: 100%;
+    height: calc(100% - 20px);
+    position: relative;
+  }
   &__banner {
     width: 100%;
     transform: scale(1.3);
