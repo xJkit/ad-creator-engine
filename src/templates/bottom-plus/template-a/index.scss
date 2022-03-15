@@ -129,6 +129,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  visibility: hidden;
+  opacity: 0;
   z-index: 12;
   &__wrapper {
     position: relative;

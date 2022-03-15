@@ -1,3 +1,4 @@
+import { gsap } from 'gsap';
 import Template from 'common/Template';
 import { actions } from 'src/constants';
 import animate from './animate';
@@ -12,6 +13,11 @@ class ButtomPlusTemplateA extends Template {
   documentScrollHeight = 0;
   animate;
   /***** */
+  constructor() {
+    super();
+    this.expandIn = this.expandIn.bind(this);
+    this.expandOut = this.expandOut.bind(this);
+  }
 
   /**  Template Life Cycle */
   TemplateDOMLoad() {
@@ -27,7 +33,9 @@ class ButtomPlusTemplateA extends Template {
   TemplateDidLoad() {
     console.log('[child loaded]');
     console.log('[insDataSetting] ', this.insDataSettings);
-    // this.onFullScreen();
+
+    document.querySelector('.slot__general').addEventListener('click', this.expandIn);
+    document.querySelector('.expand__withdraw').addEventListener('click', this.expandOut);
 
     // set slot height
     document.querySelector('.slot').style.height = this.insDataSettings['data-height'] + 'px';
@@ -75,6 +83,24 @@ class ButtomPlusTemplateA extends Template {
       action: actions.HIDDEN,
     });
   };
+
+  expandIn() {
+    this.onFullScreen();
+    gsap.to('.slot', { y: '100%', ease: 'easeOut', duration: 0.5 });
+    gsap.to('.expand', { opacity: 1, visibility: 'visible', duration: 0.5 });
+  }
+  expandOut() {
+    gsap.to('.expand', {
+      opacity: 0,
+      duration: 0.5,
+      onComplete: () => {
+        gsap.set('.expand', { visibility: 'hidden' });
+        this.onNormal();
+      },
+    });
+    gsap.to('.slot', { y: '0', ease: 'easeOut', duration: 0.3 });
+    gsap.fromTo('.slot__banner', { scale: 1.3 }, { scale: 1, duration: 0.3 });
+  }
 }
 
 export default new ButtomPlusTemplateA();
