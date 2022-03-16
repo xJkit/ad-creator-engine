@@ -11,6 +11,7 @@ class ButtomPlusTemplateA extends Template {
   insDataSettings = insDefaultSetting;
   documentScrollTop = 0;
   documentScrollHeight = 0;
+  videoCurrentTime = 0;
   animate;
   /***** */
   constructor() {
@@ -25,9 +26,9 @@ class ButtomPlusTemplateA extends Template {
       action: actions.LOADED,
       insDefaultSetting: insDefaultSetting,
     });
-    // new Carousel({
-    //   target: document.querySelectorAll('.expand__banner'),
-    // });
+    new Carousel({
+      target: document.querySelectorAll('.expand__banner'),
+    });
   }
 
   TemplateDidLoad() {
@@ -88,6 +89,13 @@ class ButtomPlusTemplateA extends Template {
     this.onFullScreen();
     gsap.to('.slot', { y: '100%', ease: 'easeOut', duration: 0.5 });
     gsap.to('.expand', { opacity: 1, visibility: 'visible', duration: 0.5 });
+
+    // Main Banner video pause
+    document.querySelector('.slot__video video').pause();
+    this.videoCurrentTime = document.querySelector('.slot__video video').currentTime;
+    // Expand Banner video extend Main Banner video currentTime and play
+    document.querySelector('.expand__video video').currentTime = this.videoCurrentTime;
+    document.querySelector('.expand__video video').play();
   }
   expandOut() {
     gsap.to('.expand', {
@@ -98,8 +106,22 @@ class ButtomPlusTemplateA extends Template {
         this.onNormal();
       },
     });
-    gsap.to('.slot', { y: '0', ease: 'easeOut', duration: 0.3 });
+    gsap.to('.slot', {
+      y: '0',
+      ease: 'easeOut',
+      duration: 0.3,
+      onComplete: () => {
+        document.querySelector('.slot__video video').play();
+      },
+    });
     gsap.fromTo('.slot__banner', { scale: 1.3 }, { scale: 1, duration: 0.3 });
+
+    // Expand Banner video pause
+    document.querySelector('.expand__video video').pause();
+    this.videoCurrentTime = document.querySelector('.expand__video video').currentTime;
+    // Main Banner video extend Expand Banner  video currentTime and play
+    document.querySelector('.slot__video video').currentTime = this.videoCurrentTime;
+    document.querySelector('.slot__video video').play();
   }
 }
 
