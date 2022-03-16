@@ -42,7 +42,10 @@ export default class Carousel {
       this.startIndex++;
       this.startIndex = this.startIndex === this.length ? 0 : this.startIndex;
     }
-
+    // cleat data-position
+    for (let el of this.target) {
+      delete el.dataset.position;
+    }
     this.set();
   }
 }
