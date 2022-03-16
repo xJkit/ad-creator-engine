@@ -7,9 +7,10 @@ export default class Carousel {
     this.startIndex = 0;
     this.length = this.target.length;
     this.targetArr = Array.prototype.slice.call(this.target);
+    this.currentEl;
     this.xDown = null;
     this.xDiff = 0;
-    this.touchDownHandler = this.touchDownHandler.bind(this);
+    this.haveVideoTag = this.touchDownHandler = this.touchDownHandler.bind(this);
     this.touchEndHandler = this.touchEndHandler.bind(this);
     this.set();
 
@@ -26,12 +27,25 @@ export default class Carousel {
       'data-position',
       'prev',
     );
+
+    // reset this.currentEl
+    this.currentEl = this.targetArr[this.startIndex].querySelector('video') || false;
+    // if this currentEl have video tag will play
+    if (this.currentEl) {
+      this.currentEl.play();
+    }
   }
 
   touchDownHandler(e) {
     this.xDown = e.touches[0].clientX;
   }
   touchEndHandler(e) {
+    // if this currentEl have video tag will pause
+    if (this.currentEl) {
+      this.currentEl.pause();
+    }
+    // this.currentEl = this.targetArr[this.startIndex].querySelector('video') || false;
+
     this.xDiff = e.changedTouches[0].clientX - this.xDown;
     if (this.xDiff > 0) {
       // 往左滑 --
