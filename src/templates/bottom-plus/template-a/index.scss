@@ -15,6 +15,10 @@ body {
   overflow: hidden;
 }
 
+img {
+  vertical-align: middle;
+}
+
 .content {
   height: 100%;
   text-align: center;
@@ -75,13 +79,12 @@ body {
     }
   }
   &__general {
+    display: inline-block;
     height: 20px;
     img {
       width: 100%;
-      display: block;
       height: 100%;
       width: auto;
-      margin: 0 auto;
     }
   }
   &__container {
