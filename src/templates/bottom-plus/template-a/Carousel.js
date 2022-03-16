@@ -27,9 +27,7 @@ export default class Carousel {
       'prev',
     );
   }
-  handleIndex() {
-    // custom effect
-  }
+
   touchDownHandler(e) {
     this.xDown = e.touches[0].clientX;
   }
@@ -44,10 +42,7 @@ export default class Carousel {
       this.startIndex++;
       this.startIndex = this.startIndex === this.length ? 0 : this.startIndex;
     }
-    // this.startIndex = this.startIndex % this.length;
-    // console.log(this.startIndex);
-    console.log('起手', this.xDown);
-    console.log('放手', e.changedTouches[0].clientX);
-    // this.set();
+
+    this.set();
   }
 }
