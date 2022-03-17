@@ -37,6 +37,9 @@ class ButtomPlusTemplateA extends Template {
 
     document.querySelector('.slot__general').addEventListener('click', this.expandIn);
     document.querySelector('.expand__withdraw').addEventListener('click', this.expandOut);
+    document.querySelectorAll('.slot__volume').forEach((el) => {
+      el.addEventListener('touchend', this.toggleVolume);
+    });
 
     // set slot height
     document.querySelector('.slot').style.height = this.insDataSettings['data-height'] + 'px';
@@ -122,6 +125,11 @@ class ButtomPlusTemplateA extends Template {
     // Main Banner video extend Expand Banner  video currentTime and play
     document.querySelector('.slot__video video').currentTime = this.videoCurrentTime;
     document.querySelector('.slot__video video').play();
+  }
+  toggleVolume(e) {
+    e.stopPropagation();
+    this.dataset.sound = this.dataset.sound === 'off' ? 'on' : 'off';
+    this.nextElementSibling.muted = !this.nextElementSibling.muted;
   }
 }
 
