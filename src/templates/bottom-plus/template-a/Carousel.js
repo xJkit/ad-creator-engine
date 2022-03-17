@@ -44,15 +44,17 @@ export default class Carousel {
     if (this.currentEl) {
       this.currentEl.pause();
     }
-    // this.currentEl = this.targetArr[this.startIndex].querySelector('video') || false;
 
     this.xDiff = e.changedTouches[0].clientX - this.xDown;
-    if (this.xDiff > 0) {
-      // 往左滑 --
+    if (this.xDiff > 0 || (this.xDiff === 0 && e.changedTouches[0].clientX <= window.innerWidth / 4)) {
+      // 手指往右滑 --
       this.startIndex--;
       this.startIndex = this.startIndex < 0 ? this.length - 1 : this.startIndex;
-    } else {
-      // 往右滑 ++
+    } else if (
+      this.xDiff < 0 ||
+      (this.xDiff === 0 && e.changedTouches[0].clientX >= window.innerWidth - window.innerWidth / 4)
+    ) {
+      // 手指往左滑 ++
       this.startIndex++;
       this.startIndex = this.startIndex === this.length ? 0 : this.startIndex;
     }
