@@ -6,7 +6,9 @@ const triggerDistance = 1000;
 export default function animate({ renderHeight: { fullScreen, normalScreen } }) {
   let isFirst = true;
   const tl = gsap.timeline();
-  const entryAnimate = new EntryAnimate();
+  const entryAnimate = new EntryAnimate({
+    effect: 'template1',
+  });
   let currentIndex = 0;
 
   return function (documentScrollTop, documentScrollHeight) {

@@ -3,16 +3,16 @@ import { gsap } from 'gsap';
 const parent = window.parent.document.documentElement;
 export default class EntryAnimate {
   tl;
-  constructor({ reverse = false } = {}) {
+  constructor({ reverse = false, effect = 'template1' } = {}) {
     this.windowHeight = window.parent.innerHeight;
     this.windowWidth = window.parent.innerWidth;
     this.distance;
     this.reverse = reverse;
     // 0316
     this.chileNodes = document.querySelectorAll('.entryAnimate__container > *');
-    this.template = this.chileNodes.length === 1 ? 'template1' : 'template2';
+    this.effect = effect;
 
-    if (this.template === 'template2')
+    if (this.effect === 'template2')
       document.querySelector('.entryAnimate__container').classList.add('entryAnimate__container--multiple');
 
     this.init();
@@ -45,7 +45,7 @@ export default class EntryAnimate {
     document.querySelector('.entryAnimate__container').append(...newEl);
 
     const referEl = document.querySelector('.entryAnimate__items').firstChild;
-    if (this.template === 'template1') {
+    if (this.effect === 'template1') {
       this.distance = this.windowHeight / 2 + referEl.offsetHeight / 2;
     } else {
       this.distance = this.windowWidth / 2 + referEl.offsetWidth / 2;
@@ -67,7 +67,7 @@ export default class EntryAnimate {
     window.parent.document.body.style.overflow = 'hidden';
     window.parent.document.body.style.height = '100vh';
 
-    switch (this.template) {
+    switch (this.effect) {
       case 'template1':
         this.template1();
         break;
