@@ -68,9 +68,9 @@ function prepareSlot(tl, normalScreen) {
 }
 
 function scrollHandle(tl, currentIndex) {
-  gsap.to(document.querySelectorAll(`.slot__product:not(:nth-child(${currentIndex + 1}))`), { y: 20, duration: 0.5 });
+  gsap.to(document.querySelectorAll(`.slot__product:not(:nth-child(${currentIndex + 1}))`), { y: 0, duration: 0.5 });
   gsap.to(document.querySelectorAll('.slot__product')[currentIndex], {
-    y: 0,
+    y: -20,
     duration: 0.5,
   });
 }
