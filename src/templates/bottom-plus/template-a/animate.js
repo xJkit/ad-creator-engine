@@ -11,7 +11,7 @@ export default function animate({ renderHeight: { fullScreen, normalScreen } }) 
   });
   let currentIndex = 0;
 
-  return function (documentScrollTop, documentScrollHeight) {
+  return function (documentScrollTop) {
     currentIndex = getCurrentIndex(documentScrollTop);
     if (isFirst && documentScrollTop <= 20) {
       // 1. entry animtion
