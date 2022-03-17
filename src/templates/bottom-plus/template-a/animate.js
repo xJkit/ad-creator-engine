@@ -19,7 +19,7 @@ export default function animate({ renderHeight: { fullScreen, normalScreen } }) 
       fullScreen();
       entryAnimate.start();
       // slot animation delay 3.5s
-      // prepareSlot(tl, normalScreen);
+      prepareSlot(tl, normalScreen);
     } else {
       // 2. slot animation
       scrollHandle(tl, currentIndex);
