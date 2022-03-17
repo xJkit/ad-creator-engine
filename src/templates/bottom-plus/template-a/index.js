@@ -13,6 +13,7 @@ class ButtomPlusTemplateA extends Template {
   documentScrollHeight = 0;
   videoCurrentTime = 0;
   animate;
+  pointerX;
   /***** */
   constructor() {
     super();
@@ -39,6 +40,14 @@ class ButtomPlusTemplateA extends Template {
     document.querySelector('.expand__withdraw').addEventListener('click', this.expandOut);
     document.querySelectorAll('.slot__volume').forEach((el) => {
       el.addEventListener('touchend', this.toggleVolume);
+    });
+    document.querySelector('.slot__container').addEventListener('touchstart', (e) => {
+      this.pointerX = e.touches[0].clientX;
+    });
+    document.querySelector('.slot__container').addEventListener('touchend', (e) => {
+      if (Math.abs(e.changedTouches[0].clientX - this.pointerX) > 50) {
+        this.expandIn();
+      }
     });
 
     // set slot height
