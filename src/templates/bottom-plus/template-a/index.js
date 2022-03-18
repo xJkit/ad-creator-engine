@@ -49,6 +49,9 @@ class ButtomPlusTemplateA extends Template {
         this.expandIn();
       }
     });
+    document.querySelector('.slot__close').addEventListener('click', () => {
+      this.closeAd();
+    });
 
     // set slot height
     document.querySelector('.slot').style.height = this.insDataSettings['data-height'] + 'px';
@@ -139,6 +142,16 @@ class ButtomPlusTemplateA extends Template {
     e.stopPropagation();
     this.dataset.sound = this.dataset.sound === 'off' ? 'on' : 'off';
     this.nextElementSibling.muted = !this.nextElementSibling.muted;
+  }
+
+  closeAd() {
+    gsap.to('.slot', {
+      opacity: 0,
+      duration: 0.3,
+      onComplete: function () {
+        document.querySelector('.slot').remove();
+      },
+    });
   }
 }
 
