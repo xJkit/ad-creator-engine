@@ -11,23 +11,78 @@
     <div class="content">
       <div class="entryAnimate">
         <div class="entryAnimate__container">
-          <img class="entryAnimate__target" src="<%=require('./assets/entryAnimate_img.png')%>" />
+          <!-- template1、3 start -->
+          <img class="entryAnimate__target" src="<%=require('./assets/entryAnimate_img.png')%>" alt="1" />
+          <!-- template1、3 end -->
+
+          <!-- template2 start -->
+          <!-- <div></div>
+          <div></div>
+          <div></div> -->
+          <!-- template2 end -->
         </div>
       </div>
       <div class="slot">
-        <div class="slot__banner">
-          <img src="<%=require('./assets/slot_banner.png')%>" alt="" />
+        <div class="slot__general">
+          <img src="<%=require('./assets/general.png')%>" alt="" />
         </div>
-        <div class="slot__video"></div>
-        <div class="slot__products">
-          <div class="slot__product">
-            <img src="<%=require('./assets/slot01.png')%>" alt="rpuducts01" />
+        <div class="slot__container">
+          <a href="" class="slot__wenhao">
+            <img src="<%=require('./assets/wenhao.png')%>" alt="" />
+          </a>
+          <div class="slot__close">
+            <img src="<%=require('./assets/close.png')%>" alt="" />
           </div>
-          <div class="slot__product">
-            <img src="<%=require('./assets/slot02.png')%>" alt="rpuducts02" />
+          <div class="slot__banner">
+            <img src="<%=require('./assets/slot_banner.png')%>" alt="" />
           </div>
-          <div class="slot__product">
-            <img src="<%=require('./assets/slot03.png')%>" alt="rpuducts03" />
+          <div class="slot__video">
+            <div class="slot__volume" data-sound="off"></div>
+            <video loop muted webkit-playsinline playsinline>
+              <source
+                src="https://videos.ctfassets.net/hrltx12pl8hq/BHfXyboouchEGHXHHol0M/0200fcdc1f69d1069de7242069571197/Lucent_Vista_Header_SmV2.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="slot__products">
+            <a class="slot__product" href="#" target="_blank">
+              <img src="<%=require('./assets/slot01.png')%>" alt="rpuducts01" />
+            </a>
+            <a class="slot__product" href="#" target="_blank">
+              <img src="<%=require('./assets/slot02.png')%>" alt="rpuducts02" />
+            </a>
+            <a class="slot__product" href="#" target="_blank">
+              <img src="<%=require('./assets/slot03.png')%>" alt="rpuducts03" />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="expand">
+        <div class="expand__withdraw">
+          <img src="<%=require('./assets/withdraw.png')%>" alt="" />
+        </div>
+        <div class="expand__wrapper">
+          <div class="expand__banner">
+            <div class="expand__video">
+              <div class="slot__volume" data-sound="off"></div>
+              <video loop muted webkit-playsinline playsinline>
+                <source
+                  src="https://videos.ctfassets.net/hrltx12pl8hq/BHfXyboouchEGHXHHol0M/0200fcdc1f69d1069de7242069571197/Lucent_Vista_Header_SmV2.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <img src="<%=require('./assets/expand_main.jpg')%>" alt="" />
+          </div>
+          <div class="expand__banner">
+            <img src="<%=require('./assets/expand_01.jpg')%>" alt="" />
+          </div>
+          <div class="expand__banner">
+            <img src="<%=require('./assets/expand_02.jpg')%>" alt="" />
+          </div>
+          <div class="expand__banner">
+            <img src="<%=require('./assets/expand_03.jpg')%>" alt="" />
           </div>
         </div>
       </div>
